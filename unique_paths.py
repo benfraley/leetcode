@@ -1,5 +1,6 @@
 # https://leetcode.com/problems/unique-paths/
 # had to look up the math lol
+# 74.23% on runtime, 35.39% on memory
 class Solution:
     def uniquePaths(self, m: int, n: int) -> int:
         # has to be m-1 moves down and n-1 moves right
