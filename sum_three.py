@@ -1,37 +1,23 @@
 class Solution(object):
-    def fourSum(self, nums, target):
+    def threeSum(self, nums):
         """
         :type nums: List[int]
-        :type target: int
         :rtype: List[List[int]]
         """
         nums.sort()
-        quads = set()
-        n = len(nums)
-
-        for i in range(n - 3): # has to be 4 nums
-            if i > 0 and nums[i] == nums[i-1]:
-                continue
-            for j in range(i + 1, n - 2):
-                if j > i + 1 and nums[j] == nums[j-1]:
-                    continue
-            left = j + 1
-            right = n - 1
-            
-            while left < right:
-                total = nums[i] + nums[j] + nums[left] + nums[right]
-                print(nums[i], nums[j], nums[left], nums[right])
-                if total == target:
-                    quads.add((nums[i], nums[j], nums[left], nums[right]))
-                    left += 1
-                    right -= 1
-                    while left < right and nums[left] == nums[left - 1]:
-                        left += 1
-                    while left < right and nums[right] == nums[right + 1]:
-                        right -= 1
-                elif total < target:
-                    left += 1
-                else:
-                    right -= 1
-        print(quads)
-        return list(quads)
+        triplets = set()
+        for i in range(len(nums)):
+            j = i + 1 # check the next element in the list
+            k = len(nums) -1 # check the last element in list
+            while j < k:
+                total = nums[i] + nums[j] + nums[k]
+                if total == 0:
+                    triplets.add((nums[i], nums[j], nums[k]))
+                    j += 1
+                    k -= 1
+                elif total < 0:
+                    j += 1 # move to the right
+                elif total > 0:
+                    k -= 1 # move to the left
+        return list(triplets)
+        
