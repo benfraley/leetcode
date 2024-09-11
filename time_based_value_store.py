@@ -6,15 +6,21 @@ class TimeMap:
 
     def set(self, key: str, value: str, timestamp: int) -> None:
         if key not in self.values:
-            self.values[key] = {}
-        self.values[key][timestamp] = value
+            self.values[key] = []
+        self.values[key].append([timestamp, value])
 
     def get(self, key: str, timestamp: int) -> str:
         ret = ""
-        time = 0
         if key in self.values:
-            for (k, v) in self.values[key].items():
-                if k <= timestamp and k > time:
-                    ret = v
-                    time = k
+            l, r = 0, len(self.values[key]) - 1
+            while l <= r:
+                m = (l+r) // 2
+                if self.values[key][m][0] == timestamp:
+                    ret = self.values[key][m][1]
+                    break
+                elif self.values[key][m][0] < timestamp:
+                    ret = self.values[key][m][1]
+                    l = m + 1
+                else:
+                    r = m - 1
         return ret
