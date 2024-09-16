@@ -15,6 +15,3 @@ class Solution:
                     #grid[y][x] = newVal # update the grid just to make sure it worked
         #print(grid)
         return added
-
-
-                
